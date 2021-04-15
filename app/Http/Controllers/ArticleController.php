@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends Controller
 {
 
     public function search(Request $req){
 
-        $article=$req->get('article_name');
+        $article=$req->get('search');
+        if(empty($article))
+            return view('article',['articles'=>[]]);
+                else
         return view('article',['articles'=> Article::getLikeName($article)]);
     }
 

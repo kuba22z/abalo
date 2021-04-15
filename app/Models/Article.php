@@ -14,7 +14,7 @@ class Article extends Model
 
     public static function getLikeName(string $name)
     {
-        return DB::table('ab_article')->select('id', 'ab_name')->where('ab_name', 'LIKE', "%{$name}%")->get();
+        return DB::table('ab_article')->select('id', 'ab_name','ab_price','ab_description')->where('ab_name', 'LIKE', "%{$name}%")->get();
     }
 
 }
