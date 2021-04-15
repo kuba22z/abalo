@@ -12,8 +12,8 @@ class ArticleController extends Controller
 
         $article=$req->get('search');
         if(empty($article))
-            return view('article',['articles'=>[]]);
-                else
+            return view('article',['articles'=> Article::getLikeName("")]);
+        else
         return view('article',['articles'=> Article::getLikeName($article)]);
     }
 

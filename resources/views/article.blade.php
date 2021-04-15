@@ -22,6 +22,8 @@
             <td>{{$article->ab_name}}</td>
             <td>{{$article->ab_price}}</td>
             <td>{{$article->ab_description}}</td>
+            <td><object data="storage/app/public/articelpictures/{{$article ->id}}" width="80px" height="80px">
+                    <img src="storage/app/public/articelpictures/00_image_missing.jpg" alt="Bild"></object></td>
         </tr>
     @endforeach
     </tbody>
