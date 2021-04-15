@@ -17,7 +17,10 @@ class Article extends Model
         if($name =="")
             return DB::table('ab_article')->select('id', 'ab_name','ab_price','ab_description')->get();
         else
-            return DB::table('ab_article')->select('id', 'ab_name','ab_price','ab_description')->where('ab_name', 'LIKE', "%{$name}%")->get();
+            return DB::table('ab_article')
+                ->select('id', 'ab_name','ab_price','ab_description')
+                ->where(DB::raw('lower(ab_name)'), 'like', '%' . strtolower($name) . '%')
+                ->get();
     }
 
 }
