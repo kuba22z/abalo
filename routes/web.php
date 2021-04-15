@@ -20,7 +20,7 @@ Route::get('/testdata', 'App\Http\Controllers\AbTestDataController@ausgabe_testd
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'search'])->name('search');
 
 
 
