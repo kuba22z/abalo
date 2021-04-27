@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-js6-kontrollstrukturen</title>
+</head>
+<body>
+<script>
+    "use strict";
+    for (let i=0; i<3;i++)
+    {
+        if(i==1){console.log("Welt")}
+        else if (i==2){console.log("!")}
+        else {console.log("Hallo")}
+    }
+    let j =0;
+    while (j<3)
+    {
+        switch(j){
+            case 1:
+                console.log("Case1");
+                j++;
+                break;
+            case 2:
+                console.log("Case2");
+                j++;
+                break;
+            default:
+                j++;
+                break;
+        }
+    }
+    let k=0;
+    do {
+        console.log("Nochmal");
+        k++;
+    }while(k<5)
+</script>
+</body>
+</html>

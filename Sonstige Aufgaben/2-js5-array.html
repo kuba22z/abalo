@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-js5-array</title>
+</head>
+<body>
+<script>
+   "use strict";
+    let array = ["erstes", "zweites", 3,4];
+    for (let i=0; i < array.length; i++)
+    {
+        console.log(i, array[i]);
+    }
+
+    let j =0;
+    while (j < array.length)
+   {
+       console.log(j, array[j]);
+       j++;
+   }
+
+    let x=0;
+   for (x in array)
+   {
+       console.log(x, array[x]);
+   }
+
+   array.push("Inka");
+   console.log(array.toString());
+   array.pop();
+   console.log(array.toString());
+   array[1] = "neu";
+   console.log(array.toString());
+
+   // length
+   console.log("Länge:", array.length);
+   // sort
+   console.log("Sortiert:",array.sort().toString());
+   // find
+   console.log("Finde 3:", array.find(function(a)
+                                       {
+                                           return a==3;
+                                       })
+   );
+   // filter
+   console.log("Filter >2:", array.filter(function(a)
+                                       {
+                                           return a>2;
+                                       }).toString()
+   );
+   // map
+   console.log("1 anhängen:", array.map(function (a)
+                                       {
+                                           return a+"1";
+                                       }).toString()
+   );
+   // slice
+   console.log("Index 1 und 3:", array.slice(1,3).toString());
+</script>
+</body>
+</html>
