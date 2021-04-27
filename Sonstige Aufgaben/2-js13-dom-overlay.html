@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-js13-dom-overlay</title>
+</head>
+<body>
+<script>
+    "use strict";
+    let text = document.createElement('P');
+    document.body.appendChild(text);
+    text.innerText = "Dieser Text steht unten";
+    text.style.height = '6%';
+    text.style.width = '100%';
+    text.style.position = 'absolute'
+    text.style.bottom = '0px';
+    text.style.backgroundColor = 'grey';
+    text.style.marginBottom = '0';
+    text.style.marginLeft = '0';
+    text.style.marginRight = '0';
+    text.style.left = '0px';
+    text.style.right = '0px';
+    text.style.textAlign = 'center';
+</script>
+</body>
+</html>

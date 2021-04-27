@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-js12-dom-createElement</title>
+</head>
+<body>
+<script>
+    "use strict";
+    var form = document.createElement("Form");
+    document.body.appendChild(form);
+
+    var dummy = document.createTextNode("Test");
+    var input1 = document.createElement("input");
+    var input2 = document.createElement("select");
+    let option1 = document.createElement("option");
+    let option2 = document.createElement("option");
+
+    input1.setAttribute('id','id1');
+    input1.setAttribute('type','text');
+
+    option1.setAttribute('value','dies');
+    option1.innerText = "Dies";
+    option2.setAttribute('value','das');
+    option2.innerText = "Das";
+
+    input2.setAttribute('id','id2');
+    input2.appendChild(option1);
+    input2.appendChild(option2);
+
+    form.appendChild(input1);
+    form.appendChild(document.createElement("br"));
+    form.appendChild(input2);
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<head>
+    <meta charset="UTF-8">
+    <title>2-js11-dom-get</title>
+</head>
+<body>
+
+<button onclick="getByID()">ID</button>
+<button onclick="getByClassName()">ClassName</button>
+<button onclick="getByTagName()">TagName</button>
+<button onclick="getByName()">Name</button>
+<p id="result1" class="class1" name="name1"></p>
+<script>
+
+    function getByID(){
+        document.getElementById("result1").innerText = "Text über ID gesetzt";
+    }
+
+    function getByClassName(){
+        document.getElementsByClassName('class1')[0].innerText = "Text über ClassName gesetzt";
+    }
+    function getByTagName(){
+        document.getElementsByTagName('p')[0].innerHTML = "Text über TagName gesetzt";
+
+    }
+    function getByName(){
+        document.getElementsByName('name1')[0].innerHTML = "Text über Name gesetzt";
+
+    }
+</script>
+</body>
+</html>
