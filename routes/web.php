@@ -22,6 +22,6 @@ Route::get('/', function () {
 });
 Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'search'])->name('search');
 Route::view('/','index');
-
+Route::view('/newarticle','newarticle');
 
 
