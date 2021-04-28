@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="js/cookiecheck.js"></script>
     <meta charset="UTF-8">
     <title>Menu</title>
 <style>
