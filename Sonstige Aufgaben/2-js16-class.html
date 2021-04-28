@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    "use strict";
+
+    class User {
+        constructor(firstname, lastname) {
+            this.firstname = firstname;
+            this.lastname = lastname;
+        }
+
+        getFirstname() {
+            return this.firstname;
+        }
+
+        setFirstname(firstname) {
+            this.firstname = firstname;
+        }
+
+        getLastname() {
+            return this.lastname;
+        }
+
+        setLastname(lastname) {
+            this.lastname = lastname;
+        }
+
+    }
+    class Buyer extends User{
+        constructor(firstname, lastname) {
+          super(firstname,lastname);
+          this.lastBuy = Date.now();
+        }
+
+    }
+
+
+</script>
+
+</body>
+</html>

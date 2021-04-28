@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-js19-timeout</title>
+</head>
+<body>
+<p id=text style="background-color: white">Hier ändert sich etwas.</p>
+<script>
+    "use strict";
+    setInterval(myFunction,1000);
+    function myFunction()
+    {
+        if(document.getElementById("text").style.backgroundColor === "red")
+        {
+            document.getElementById("text").setAttribute("style","background-color: white");
+        }
+        else if(document.getElementById("text").style.backgroundColor === "white")
+        {
+            document.getElementById("text").setAttribute("style","background-color: red");
+        }
+    }
+</script>
+</body>
+</html>

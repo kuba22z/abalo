@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    "use strict";
+    let car1 = {name: "VW",type:"Polo"};
+    class Car {
+        constructor(name, type) {
+            this.name = name;
+            this.type = type;
+        }
+        getName(){
+            return this.name;
+        }
+        setName(name){
+            this.name = name;
+        }
+        getType(){
+            return this.type;
+        }
+        setType(type){
+            this.type = type;
+        }
+        writeToConsole(){
+            console.log("Name=" +this.name+ ",Type=" + this.type);
+        }
+
+
+
+    }
+    let car2 = new Car("BMW", "316i");
+
+    function getCar(name, type){
+        return new Car(name, type);
+    }
+
+
+
+    let car3 = getCar("Porsche","Panamera");
+
+    car2.writeToConsole();
+    car3.writeToConsole();
+
+
+
+</script>
+
+</body>
+</html>

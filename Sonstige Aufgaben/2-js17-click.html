@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-js17-click</title>
+</head>
+<body>
+<input type="button" id="button" value="Click here!">
+<p id=text style="background-color: red">Hier ändert sich etwas.</p>
+<script>
+    "use strict";
+    function myFunction()
+    {
+        if(document.getElementById("text").style.backgroundColor === "red")
+        {
+        document.getElementById("text").setAttribute("style","background-color: yellow");
+        }
+        else if(document.getElementById("text").style.backgroundColor === "yellow")
+        {
+            document.getElementById("text").setAttribute("style","background-color: green");
+        }
+        else if(document.getElementById("text").style.backgroundColor === "green")
+        {
+            document.getElementById("text").setAttribute("style","background-color: red");
+        }
+    }
+    document.getElementById("button").addEventListener("click", myFunction);
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-js18-mouseover</title>
+</head>
+<body>
+<p id=text style="background-color: white">Hier ändert sich etwas.</p>
+<script>
+    "use strict";
+    document.getElementById("text").addEventListener("mouseenter", myFunction);
+    document.getElementById("text").addEventListener("mouseleave", myFunction2);
+    function myFunction()
+    {
+        document.getElementById("text").setAttribute("style","background-color: green");
+    }
+    function myFunction2()
+    {
+        document.getElementById("text").setAttribute("style","background-color: white");
+    }
+
+</script>
+</body>
+</html>
