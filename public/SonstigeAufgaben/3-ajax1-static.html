@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3-ajax1-static.html</title>
+</head>
+<body>
+<h1 id="ausgabe"></h1>
+<script>
+    let JsonMes;
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "/static/message.json");
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState === 4){
+         if (xhr.status === 200) {
+             JsonMes = JSON.parse(xhr.responseText);
+             document.getElementById("ausgabe").innerHTML=JsonMes.message;
+           }
+         else
+           console.log(xhr.statusText);
+       }
+    };
+    xhr.onerror = function(){
+        alert(xhr.statusText);
+    };
+    xhr.send();
+</script>
+
+</body>
+</html>
