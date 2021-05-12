@@ -64,11 +64,27 @@
     var ul = document.getElementById("cart-ul");
 
     function addToShoppingCart(articleID, article) {
-        if (!articleExists(articleID)) {
-            //psuh article to the array
-            shoppingCart[articleID] = article;
-            updateCart(article);
-        }
+        let articleId;
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "/api/shoppingcartController");
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState === 4){
+                if (xhr.status === 200) {
+                    alert("Artikel hinzugefügt")
+                    if (!articleExists(articleID)) {
+                        //psuh article to the array
+                        shoppingCart[articleID] = article;
+                        updateCart(article);
+                    }
+                }
+                else
+                    console.log(xhr.statusText);
+            }
+        };
+        xhr.onerror = function(){
+            alert(xhr.statusText);
+        };
+        xhr.send("id=" + articleId);
     }
 
     function articleExists(articleID) {

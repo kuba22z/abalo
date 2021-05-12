@@ -76,6 +76,7 @@
                 alert("Fehler - Artikel konnte nicht gespeichert werden");
             return false;
         });
+
     function sendData(nameValue,priceValue,descriptionValue) {
         $.ajaxSetup({
             headers: { 'X-CSRF-Token' :   document.getElementById("csrf-token").getAttribute('content')}

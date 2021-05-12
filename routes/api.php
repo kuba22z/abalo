@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/articles', [App\Http\Controllers\ArticleController::class, 'newArticle'])->name('newArticle');
+Route::post('/articles', [App\Http\Controllers\ShoppingcartController::class, 'AddToShoppingcart'])->name('AddToShoppingcart');
