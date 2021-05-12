@@ -19,9 +19,9 @@ class ArticleController extends Controller
     }
 
     public function newArticle(Request $request){
-        $name = $request->post('name');
-        $price = $request->post('price');
-        $description = $request->post('description');
+        $name = $request['name'];
+        $price = $request['price'];
+        $description = $request['description'] ? $request['description'] : "" ;
         $date = date('Y-m-d H:i:s',time());
         $creator_id = 2;
 
@@ -34,14 +34,12 @@ class ArticleController extends Controller
             'ab_createdate' => $date,
             'ab_creator_id' => $creator_id
         ]);
-        return redirect("./articles");
+        return route('search');
         }
         else
             {
-               echo "Fehler - Artikel konnte nicht gespeichert werden";
+               return "Fehler - Artikel konnte nicht gespeichert werden";
             }
-
-
     }
 
 }
