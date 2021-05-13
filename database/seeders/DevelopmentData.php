@@ -44,6 +44,14 @@ class DevelopmentData extends Seeder
                 }
             }
         });
+        DB::transaction(function (){
+            for ($i=1;$i<8;$i++) {
+                DB::table('ab_shoppingcart')->insert([
+                    'ab_creator_id' => $i,
+                     'ab_createdate' => date('Y-m-d H:i:s',time())
+                ]);
+            }
+        });
 
         DB::transaction(function () {
             $users = $this->readCSV("articlecategory.csv");

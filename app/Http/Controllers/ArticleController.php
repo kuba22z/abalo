@@ -9,16 +9,16 @@ use Illuminate\Support\Facades\DB;
 class ArticleController extends Controller
 {
 
-    public function search(Request $req){
+    public function search_api(Request $req){
 
         $article=$req->get('search');
         if(empty($article))
-            return view('article',['articles'=> Article::getLikeName("")]);
+            return response()->json( Article::getLikeName(""));
         else
-        return view('article',['articles'=> Article::getLikeName($article)]);
+        return response()->json(Article::getLikeName($article));
     }
 
-    public function newArticle(Request $request){
+    public function newArticle_api(Request $request){
         $name = $request['name'];
         $price = $request['price'];
         $description = $request['description'] ? $request['description'] : "" ;
