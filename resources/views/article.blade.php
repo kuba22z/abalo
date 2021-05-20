@@ -178,8 +178,10 @@ function getArticles(){
             tdImage.append(image)
             let btn = document.createElement('button')
             btn.onclick = () => {
-                sendToShoppingCart(article.id)
-                getCart();
+                if(!shoppingCart.some(articleObject => articleObject.id===article.id)) {
+                    sendToShoppingCart(article.id)
+                    getCart();
+                }
             }
             btn.innerText="+"
             tdBtn.append(btn)
@@ -205,6 +207,10 @@ function getArticles(){
             success: function(ReturnedData){
                 console.log("Warenkorb Artikel erfolgreich gelöscht")
                 console.log(ReturnedData)
+                shoppingCart.some(articleObject => {
+                   if (articleObject.id===articleId)
+                    shoppingCart.pop(articleObject);
+                })
             },
             error: function(xhr){
                 var errorMessage = xhr.status + ': ' + xhr.statusText

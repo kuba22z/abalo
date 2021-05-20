@@ -16,9 +16,11 @@ class CreateAbShoppingcartItem extends Migration
         Schema::create('ab_shoppingcart_item', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ab_shoppingcart_id')->nullable(false)->references('id')->on('ab_shoppingcart')->cascadeOnDelete();
-            $table->foreignId('ab_article_id')->unique()->nullable(false)->references('id')->on('ab_article');
+            $table->foreignId('ab_article_id')->nullable(false)->references('id')->on('ab_article');
             $table->timestamp('ab_createdate')->nullable(false);
-        });
+            $table->unique(['ab_article_id','ab_shoppingcart_id']);
+
+	});
     }
 
     /**
