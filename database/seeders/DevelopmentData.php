@@ -69,7 +69,18 @@ class DevelopmentData extends Seeder
                 }
             }
         });
-
+        // set article_has_articlecategory from csv
+        DB::transaction(function () {
+            $articleCategories = $this->readCSV("article_has_articlecategory.csv");
+            foreach ($articleCategories as $key => $articleCategory) {
+                if ($key != 0) {
+                        DB::table('ab_article_has_articlecategory')->insert([
+                            'ab_articlecategory_id' => $articleCategory[0],
+                            'ab_article_id' => $articleCategory[1]
+                        ]);
+                }
+            }
+        });
 
     }
 
