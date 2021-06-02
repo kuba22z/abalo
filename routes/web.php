@@ -21,6 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::view('/articles','article')->name('search');
+Route::view('/newsite','newsite');
 Route::view('/','index');
 Route::view('/newarticle','newarticle');
 
