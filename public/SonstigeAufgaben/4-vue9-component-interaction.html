@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<body>
+    <div id="app">
+
+
+       <a-button></a-button>
+
+    </div>
+</body>
+<script>
+ 
+    Vue.component('a-button',{
+
+        data: function(){
+            return{
+              counter: 0
+            }
+        },
+        methods: {
+            countUp: function () {
+                this.counter++
+
+            },
+            countDown: function () {
+                this.counter--
+
+            }
+        },
+        template: `
+        <div>
+            <p>{{counter}}</p>
+            <b-button></b-button>
+        </div>
+        `
+    })
+
+    Vue.component('b-button',{
+
+        template: `
+        <div>
+            <button v-on:click="$parent.countUp()">+</button>
+            <button v-on:click="$parent.countDown()">-</button>
+        </div>
+        `
+    })
+
+    let myVue = new Vue({
+        el: '#app',
+        data: {counter: 0
+        }
+    })
+
+
+</script>
+</html>

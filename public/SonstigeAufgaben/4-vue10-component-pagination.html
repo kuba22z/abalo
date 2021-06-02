@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<body>
+    <div id="app">
+
+
+        <pageination> </pageination>
+    </div>
+</body>
+<script>
+
+    Vue.component('pageination', {
+
+        data:
+            function(){
+            return{
+                currentPage: 1,
+                minPage: 1,
+                maxPage: 10
+            }},
+
+        methods:{
+            nextPage: function(){
+                if(this.currentPage < this.maxPage)
+                    this.currentPage++
+
+            },
+            prevPage: function () {
+                if(this.currentPage > this.minPage)
+                    this.currentPage--
+            }
+        },
+        template: `
+            <div>
+                <button v-on:click="prevPage"> < </button>
+                <span>{{ currentPage }}</span>
+                <button v-on:click="nextPage"> > </button>
+            </div>
+        `
+    })
+
+
+        let myVue = new Vue({
+        el: '#app',
+        data: {}
+
+
+    })
+
+
+</script>
+</html>
