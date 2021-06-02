@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4-vue3-if.html</title>
+</head>
+<body>
+<div id="app">
+    <h1 v-if="serverdown">Der Webserver ist zurzeit nicht erreichbar!</h1>
+    <button v-on:click= serverdown=true >Server Down</button>
+</div>
+<script type="module">
+    import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js';
+    var app = new Vue({
+        el: '#app',
+        data:{
+            serverdown: false
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

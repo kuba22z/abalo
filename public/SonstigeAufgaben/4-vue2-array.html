@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4-vue2-array.html</title>
+</head>
+<body>
+
+<div id="app">
+    <table>
+   <thead>
+       <th>Name</th>
+       <th>Preis</th>
+   </thead>
+   <tr v-for="(item) in message">
+        <td>{{ item.name }}</td>
+        <td>{{ item.price }}</td>
+   </tr>
+    </table>
+    <button v-on:click='message.push({name: "Radio-UKW", price: 45})'>Mehr anzeigen</button>
+</div>
+<script type="module">
+    import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js';
+    var app = new Vue({
+        el: '#app',
+        data:{
+            message:[
+                {name: "Reifen", price: 8290},
+                {name: "Antenne drehbar. Leicht geknickt", price: 1400},
+                {name: "Opel Kadett C 1992 – wie neu", price: 150000},
+            ]
+        }
+    })
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4-vue5-html.html</title>
+</head>
+<body>
+<div id="app">
+    <p v-html="message"></p>
+</div>
+<script type="module">
+    import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js';
+    var app = new Vue({
+        el: '#app',
+        data:{
+            message: '"<b>Vielen\n' +
+                'Dank</b>, für Ihren Einkauf bei <i>Abalo</i>"'
+        }
+    })
+</script>
+</body>
+</html>
