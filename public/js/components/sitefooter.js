@@ -11,6 +11,3 @@ Vue.component('site-footer',{
        </div>
         `
 })
-new Vue({
-    el: '#app',
-})

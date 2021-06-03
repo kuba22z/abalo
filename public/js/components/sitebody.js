@@ -11,6 +11,3 @@ Vue.component('site-body',{
        </div>
         `
 })
-new Vue({
-    el: '#app',
-})
