@@ -60,6 +60,8 @@
             </tr>
             </tfoot>
         </table>
+        <button @click="previousArticleSite">Previous</button>
+        <button @click="nextArticleSite">Next</button>
     </div>
 </template>
 
@@ -71,6 +73,7 @@ export default {
             articles: {},
             shoppingCart: [],
             articleInput: [],
+            lowerBound: 0,
         }
     }
     ,
@@ -83,13 +86,24 @@ export default {
             e.preventDefault()
             this.getArticles();
         },
-        getArticles: function (limit = 30) {
+        nextArticleSite: function() {
+            if(this.articles.length!==0)
+            this.lowerBound+=5;
+                this.getArticles();
+            },
+        previousArticleSite: function() {
+            if(this.lowerBound>4) {
+                this.lowerBound-=5;
+                this.getArticles()
+            }
+        },
+        getArticles: function () {
             console.log(this.articleInput)
 
-            axios.get('/api/articles?search=' + this.articleInput, {})
+            axios.get('/api/articles?search=' + this.articleInput+'&lowerBound='+this.lowerBound, {})
                 .then((response) => {
                     console.log(response.data);
-                    this.articles = response.data.slice(0, limit);
+                    this.articles = response.data;
                 }, (error) => {
                     console.log(error);
                 });
@@ -150,8 +164,10 @@ export default {
     },
     watch: {
         articleInput: function () {
-            if (this.articleInput.length > 2)
-                this.getArticles(5)
+            if (this.articleInput.length > 2) {
+             this.lowerBound=0;
+                this.getArticles()
+            }
         }
         ,
     }

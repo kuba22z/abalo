@@ -1946,13 +1946,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "site-body",
   data: function data() {
     return {
       articles: {},
       shoppingCart: [],
-      articleInput: []
+      articleInput: [],
+      lowerBound: 0
     };
   },
   mounted: function mounted() {
@@ -1964,14 +1967,23 @@ __webpack_require__.r(__webpack_exports__);
       e.preventDefault();
       this.getArticles();
     },
+    nextArticleSite: function nextArticleSite() {
+      if (this.articles.length !== 0) this.lowerBound += 5;
+      this.getArticles();
+    },
+    previousArticleSite: function previousArticleSite() {
+      if (this.lowerBound > 4) {
+        this.lowerBound -= 5;
+        this.getArticles();
+      }
+    },
     getArticles: function getArticles() {
       var _this = this;
 
-      var limit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 30;
       console.log(this.articleInput);
-      axios.get('/api/articles?search=' + this.articleInput, {}).then(function (response) {
+      axios.get('/api/articles?search=' + this.articleInput + '&lowerBound=' + this.lowerBound, {}).then(function (response) {
         console.log(response.data);
-        _this.articles = response.data.slice(0, limit);
+        _this.articles = response.data;
       }, function (error) {
         console.log(error);
       });
@@ -2026,7 +2038,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     articleInput: function articleInput() {
-      if (this.articleInput.length > 2) this.getArticles(5);
+      if (this.articleInput.length > 2) {
+        this.lowerBound = 0;
+        this.getArticles();
+      }
     }
   }
 });
@@ -2170,57 +2185,16 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/App.vue -> <example-component></example-component>
- */
-
- // const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+ //register component globally so that it can be used inside our Vue elem
 
 vue__WEBPACK_IMPORTED_MODULE_0__.default.component('app', __webpack_require__(/*! ./components/App */ "./resources/js/components/App.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0__.default.component('site-body', __webpack_require__(/*! ./components/SiteBody */ "./resources/js/components/SiteBody.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0__.default.component('site-footer', __webpack_require__(/*! ./components/SiteFooter */ "./resources/js/components/SiteFooter.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0__.default.component('site-header', __webpack_require__(/*! ./components/SiteHeader */ "./resources/js/components/SiteHeader.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0__.default.component('site-impressum', __webpack_require__(/*! ./components/SiteImpressum */ "./resources/js/components/SiteImpressum.vue").default);
-/*
-//register component globally so that it can be used inside our Vue elem
-Vue.component('pagination-component', require('./components/PaginationComponent.vue').default);
-//register our search-article-component TODO: what does this .default do/mean??
-Vue.component('search-article-component', require('./components/SearchArticleComponent.vue').default);
-//register our add-article-component
-Vue.component('add-article-component', require('./components/AddArticleComponent.vue').default);
-//register our maintenance-warning-component
-Vue.component('maintenance-warning-component', require ('./components/MaintenanceWarningComponent').default);
-//register our article-sold-component
-Vue.component('article-sold-component', require ('./components/ArticleSoldComponent').default);
-//register site-statistics
-Vue.component('site-statistics',require ('./components/SiteStatisticsComponent').default)*/
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-/*import { ToggleButton } from "vue-js-toggle-button";
-Vue.component("ToggleButton", ToggleButton);*/
-
-/*
-Vue.use(require('vue-cookies'));
-Vue.$cookies.config('30d');
-*/
 
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
@@ -6759,7 +6733,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.menuDiv[data-v-0529e142]{\n    display: flex;\n}\n.menu-outer-ul[data-v-0529e142]{\n    list-style-type: none;\n    width: 700px;\n    margin-left: auto;\n    margin-right: auto;\n    margin-top: 0;\n    font-size: 20px;\n}\n.menu-outer-ul > .menu-outer-li[data-v-0529e142]{\n    float: left;\n    padding-right: 15px;\n    padding-left: 15px;\n}\n.menu-outer-li[data-v-0529e142]{\n    margin-top: 7px;\n    font-family: \"Arial Black\";\n}\n.menu-inner-li[data-v-0529e142] {\n    list-style-type: square;\n    font-size: large;\n    font-family: Apple;\n    margin-left: 8px;\n    margin-top: 7px;\n}\n.menu-inner-ul li[data-v-0529e142]{\n}\n.menuDiv[data-v-0529e142]{\n    display: flex;\n}\n.menu-outer-ul[data-v-0529e142]{\n    list-style-type: none;\n    width: 700px;\n    margin-left: auto;\n    margin-right: auto;\n    margin-top: 0;\n    font-size: 20px;\n}\n.menu-outer-ul > .menu-outer-li[data-v-0529e142]{\n    float: left;\n    padding-right: 15px;\n    padding-left: 15px;\n}\n.menu-outer-li[data-v-0529e142]{\n    margin-top: 7px;\n    font-family: \"Arial Black\";\n}\n.menu-inner-li[data-v-0529e142] {\n    list-style-type: square;\n    font-size: large;\n    font-family: Apple;\n    margin-left: 8px;\n    margin-top: 7px;\n}\n.menu-inner-ul li[data-v-0529e142]{\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.menuDiv[data-v-0529e142] {\n    display: flex;\n}\n.menu-outer-ul[data-v-0529e142] {\n    list-style-type: none;\n    width: 700px;\n    margin-left: auto;\n    margin-right: auto;\n    margin-top: 0;\n    font-size: 20px;\n}\n.menu-outer-ul > .menu-outer-li[data-v-0529e142] {\n    float: left;\n    padding-right: 15px;\n    padding-left: 15px;\n}\n.menu-outer-li[data-v-0529e142] {\n    margin-top: 7px;\n    font-family: \"Arial Black\";\n}\n.menu-inner-li[data-v-0529e142] {\n    list-style-type: square;\n    font-size: large;\n    font-family: Apple;\n    margin-left: 8px;\n    margin-top: 7px;\n}\n.menu-inner-ul li[data-v-0529e142] {\n}\n.menuDiv[data-v-0529e142] {\n    display: flex;\n}\n.menu-outer-ul[data-v-0529e142] {\n    list-style-type: none;\n    width: 700px;\n    margin-left: auto;\n    margin-right: auto;\n    margin-top: 0;\n    font-size: 20px;\n}\n.menu-outer-ul > .menu-outer-li[data-v-0529e142] {\n    float: left;\n    padding-right: 15px;\n    padding-left: 15px;\n}\n.menu-outer-li[data-v-0529e142] {\n    margin-top: 7px;\n    font-family: \"Arial Black\";\n}\n.menu-inner-li[data-v-0529e142] {\n    list-style-type: square;\n    font-size: large;\n    font-family: Apple;\n    margin-left: 8px;\n    margin-top: 7px;\n}\n.menu-inner-ul li[data-v-0529e142] {\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38384,7 +38358,13 @@ var render = function() {
       ),
       _vm._v(" "),
       _vm._m(1)
-    ])
+    ]),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.previousArticleSite } }, [
+      _vm._v("Previous")
+    ]),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.nextArticleSite } }, [_vm._v("Next")])
   ])
 }
 var staticRenderFns = [
@@ -38505,7 +38485,7 @@ var render = function() {
       { staticClass: "menu-outer-ul" },
       _vm._l(_vm.menu, function(submenu, index) {
         return _c("li", { key: index, staticClass: "menu-outer-li" }, [
-          _c("div", [_vm._v(_vm._s(index) + " ")]),
+          _c("div", [_vm._v(_vm._s(index))]),
           _vm._v(" "),
           _c(
             "ul",
