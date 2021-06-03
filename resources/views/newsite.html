@@ -10,12 +10,37 @@
 <body>
 <div id="app">
     <site-header></site-header>
-    <site-body></site-body>
+    <site-body>
+
+    </site-body>
+
     <site-footer></site-footer>
 </div>
 </body>
 <script src="js/components/sitebody.js" > </script>
 <script src="js/components/sitefooter.js" > </script>
 <script src="js/components/siteheader.js" > </script>
+<script src="js/components/impressum.js" > </script>
+<script>
 
+    let myVue = new Vue({
+        el: '#app',
+        data: function (){
+            return{
+                currentElement: ""
+            }
+        },
+        methods:{
+            getElement: function (){
+                return this.currentElement;
+            },
+            setElement: function (element){
+                this.currentElement = element;
+            }
+
+        }
+
+    })
+</script>
 </html>
+

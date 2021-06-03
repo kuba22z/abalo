@@ -6,11 +6,10 @@ Vue.component('site-body',{
 
     },
     template: `
-       <div>
-       Test for site-body
-       </div>
+        <div>
+        <component v-bind:is="$root.getElement()"></component>
+
+        Test for site-body
+        </div>
         `
-})
-new Vue({
-    el: '#app',
 })

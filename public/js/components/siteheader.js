@@ -4,13 +4,12 @@ Vue.component('site-header',{
     },
     methods: {
 
+
     },
     template: `
-       <div>
-       Test for site-header
-       </div>
-        `
+        <div>
+
+            Test for site-header
+        </div>`
 })
-new Vue({
-    el: '#app',
-})
+
