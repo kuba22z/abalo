@@ -12,14 +12,17 @@ class Article extends Model
 
     protected $table='ab_article';
 
-    public static function getLikeName(string $name)
+    public static function getLikeName(string $name,int $lowerBound)
     {
         if($name =="")
-            return DB::table('ab_article')->select('id', 'ab_name','ab_price','ab_description')->get();
+            return DB::table('ab_article')->select('id', 'ab_name','ab_price','ab_description')
+                ->offset($lowerBound)->limit(5)->get();
         else
             return DB::table('ab_article')
                 ->select('id', 'ab_name','ab_price','ab_description')
                 ->where(DB::raw('lower(ab_name)'), 'like', '%' . strtolower($name) . '%')
+                ->offset($lowerBound)
+                ->limit(5)
                 ->get();
     }
 

@@ -12,10 +12,11 @@ class ArticleController extends Controller
     public function search_api(Request $req){
 
         $article=$req->get('search');
+        $lowerBound=$req->get('lowerBound');
         if(empty($article))
-            return response()->json( Article::getLikeName(""));
+            return response()->json( Article::getLikeName("",(int)$lowerBound));
         else
-        return response()->json(Article::getLikeName($article));
+        return response()->json(Article::getLikeName($article,(int)$lowerBound));
     }
 
     public function newArticle_api(Request $request){

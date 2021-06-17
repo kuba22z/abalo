@@ -151,21 +151,6 @@
     }
 
     function fillTable(limit) {
-        /*    {{--    @foreach ($articles as $article)
-        <tr>
-            <td>{{$article->ab_name}}</td>
-            <td>{{$article->ab_price}}</td>
-            <td>{{$article->ab_description}}</td>
-            <td>
-                <object data="{{asset('storage/articelpictures/'.$article->id.'.jpg')}}" width="80px" height="80px">
-                    <img width="80px" height="80px" src="{{asset('storage/articelpictures/00_image_missing.jpg')}}"
-                         alt="Bild"></object>
-            </td>
-            <td>
-                <button onclick="addToShoppingCart({{$article->id}},{{json_encode($article)}})">+</button>
-            </td>
-        </tr>
-    @endforeach--}}*/
         let i = 0;
         for (let article of articles) {
             if (i === limit)
