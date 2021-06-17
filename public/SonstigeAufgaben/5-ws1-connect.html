@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5-ws1-connect.html</title>
+</head>
+<body>
+<script>
+    let socket = new WebSocket('ws://127.0.0.1:8100/demo');
+    socket.onopen=(msgVerbunden)=>{
+
+        console.log("Connected");
+    }
+
+</script>
+</body>
+</html>

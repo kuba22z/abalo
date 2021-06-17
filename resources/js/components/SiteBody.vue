@@ -20,19 +20,19 @@
 
         <form method="GET" action="api/articles">
 
-            <input type="text" id="search" v-model="articleInput"/>
-            <button id="submit" @click="onSubmit">Abschicken</button>
+            <input class="article-search_input_round" type="text" id="search" v-model="articleInput"/>
+            <button class="article-search_button_mint" id="submit" @click="onSubmit">Abschicken</button>
 
         </form>
-        <h1>Artikelübersicht</h1>
-        <table id="tbodyContainer">
+        <h1 class="articles_header_mint">Artikelübersicht</h1>
+        <table class="articles_table_outlines" id="tbodyContainer">
             <thead>
             <tr>
-                <th>Artikel</th>
-                <th>Preis</th>
-                <th>Beschreibung</th>
-                <th>Bild</th>
-                <th>Zum Warenkorb hinzufügen</th>
+                <th class="articles_table-header_mint">Artikel</th>
+                <th class="articles_table-header_mint">Preis</th>
+                <th class="articles_table-header_mint">Beschreibung</th>
+                <th class="articles_table-header_mint">Bild</th>
+                <th class="articles_table-header_mint">Zum Warenkorb hinzufügen</th>
             </tr>
             </thead>
             <tbody>
@@ -53,6 +53,7 @@
             </tbody>
             <tfoot>
             <tr>
+                <td>...</td>
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>

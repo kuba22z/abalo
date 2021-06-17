@@ -16,26 +16,28 @@
 </style>
 
 <body>
+
 <div id="app">
     <div id="shoppingCart">
         <h1>Warenkorb 🛒</h1>
 
     </div>
-    <form method="GET" action="api/articles">
+    <form class="article-search" method="GET" action="api/articles">
 
-        <input type="text" id="search" v-model="articleInput"/>
-        <button id="submit">Abschicken</button>
+        <input class="article-search_input_round" type="text" id="search" v-model="articleInput"/>
+        <button class="article-search_button_mint" id="submit">Abschicken</button>
 
     </form>
-    <h1>Artikelübersicht</h1>
-    <table id="tbodyContainer">
+    <div class="articles">
+    <h1 class="articles_header_mint">Artikelübersicht</h1>
+    <table class="articles_table_outlines" id="tbodyContainer">
         <thead>
         <tr>
-            <th>Artikel</th>
-            <th>Preis</th>
-            <th>Beschreibung</th>
-            <th>Bild</th>
-            <th>Zum Warenkorb hinzufügen</th>
+            <th class="articles_table-header_mint">Artikel</th>
+            <th class="articles_table-header_mint">Preis</th>
+            <th class="articles_table-header_mint">Beschreibung</th>
+            <th class="articles_table-header_mint">Bild</th>
+            <th class="articles_table-header_mint">Zum Warenkorb hinzufügen</th>
         </tr>
         </thead>
 
@@ -48,6 +50,7 @@
         </tr>
         </tfoot>
     </table>
+    </div>
 </div>
 <script>
     new Vue({

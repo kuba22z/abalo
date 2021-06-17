@@ -3,7 +3,7 @@
 <head>
     <script src="js/cookiecheck.js"></script>
     <meta charset="UTF-8">
-    <title>Menu</title>
+    <title>Impressum</title>
 </head>
 <body>
 <p><strong>Impressum</strong></p>

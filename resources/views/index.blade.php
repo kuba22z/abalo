@@ -5,7 +5,7 @@
     <script src="js/cookiecheck.js"></script>
     <meta charset="UTF-8">
     <title>Menu</title>
-<style>
+<!--<style>
     .menu-outer-ul{
         list-style-type: none;
    /*
@@ -38,7 +38,7 @@
     }
 
 
-</style>
+</style>-->
 </head>
 <body>
 <script>

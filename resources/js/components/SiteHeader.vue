@@ -66,7 +66,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<!--<style scoped>
 
 .menuDiv {
     display: flex;
@@ -141,4 +141,4 @@ export default {
 
 .menu-inner-ul li {
 }
-</style>
+</style>-->

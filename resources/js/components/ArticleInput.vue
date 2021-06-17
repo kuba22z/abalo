@@ -1,12 +1,12 @@
 <template>
 <form id="newArticle" method="POST" action="/api/articles">
 <label for="articleName">Artikelbezeichnung</label>
-    <input type="text" id="articleName" v-model="articleName" /><br>
+    <input class="article-search_input_round" type="text" id="articleName" v-model="articleName" /><br>
     <label for="articlePrice">Artikelpreis</label>
-    <input type="text" id="articlePrice" v-model="articlePrice" /><br>
+    <input class="article-search_input_round" type="text" id="articlePrice" v-model="articlePrice" /><br>
     <label for="articleDesc" >Artikelbeschreibung</label>
-    <input type="text" id="articleDesc" v-model="articleDesc"/><br>
-    <button @click.prevent="onSubmit">Speichern</button>
+    <input class="article-search_input_round" type="text" id="articleDesc" v-model="articleDesc"/><br>
+    <button class="article-search_button_mint" @click.prevent="onSubmit">Speichern</button>
 </form>
 </template>
 

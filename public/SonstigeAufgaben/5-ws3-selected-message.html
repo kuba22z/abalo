@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5-ws2-message.html</title>
+</head>
+<body>
+<script>
+    let socket = new WebSocket('ws://127.0.0.1:8100/demo');
+    socket.onmessage=(msgVerbunden)=>{
+        let msg =JSON.parse(JSON.parse(msgVerbunden.data).data);
+
+        if (msg.id==="3") {
+            console.log(msg.text);
+        }
+    }
+
+</script>
+</body>
+</html>
