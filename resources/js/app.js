@@ -20,6 +20,32 @@ socket.onmessage=(msgVerbunden)=>{
     console.log(msg.data);
     alert(msg.data)
 }
+let socket2 = new WebSocket('ws://127.0.0.1:8100/sold');
+socket2.onmessage=(msgVerbunden)=>{
+    let isAuth="false";
+    let userID=0;
+    axios.get('/isloggedin', {})
+        .then((response) => {
+            isAuth=response.data.auth;
+            userID=response.data.id;
+            console.log(response.data)
+
+            if(isAuth==="true") {
+
+                let msg = JSON.parse(msgVerbunden.data);
+                console.log(msg.data[0]);
+                if(userID===msg.data[0]) {
+                    let message= msg.data.substring(1);
+                    alert(message)
+                }
+                else
+                    console.log("AuthID ist nicht die ID des Verkäufers")
+            }
+        }, (error) => {
+            console.log(error);
+        });
+}
+
 
 
 Vue.use(vueaxios, axios);

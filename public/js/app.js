@@ -2263,6 +2263,30 @@ socket.onmessage = function (msgVerbunden) {
   alert(msg.data);
 };
 
+var socket2 = new WebSocket('ws://127.0.0.1:8100/sold');
+
+socket2.onmessage = function (msgVerbunden) {
+  var isAuth = "false";
+  var userID = 0;
+  axios.get('/isloggedin', {}).then(function (response) {
+    isAuth = response.data.auth;
+    userID = response.data.id;
+    console.log(response.data);
+
+    if (isAuth === "true") {
+      var msg = JSON.parse(msgVerbunden.data);
+      console.log(msg.data[0]);
+
+      if (userID === msg.data[0]) {
+        var message = msg.data.substring(1);
+        alert(message);
+      } else console.log("AuthID ist nicht die ID des Verkäufers");
+    }
+  }, function (error) {
+    console.log(error);
+  });
+};
+
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vueaxios, axios);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0__.default({
   el: '#app'

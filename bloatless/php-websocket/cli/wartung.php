@@ -8,8 +8,6 @@ require __DIR__ . '/../src/Client.php';
 $client = new \Bloatless\WebSocket\Client;
 $client->connect('127.0.0.1', 8100, '/demo', 'foo.lh');
 
-usleep(5000);
-
 $payload = json_encode([
     'action' => 'echo',
     'data' => '                In Kürze verbessern wir Abalo für Sie!

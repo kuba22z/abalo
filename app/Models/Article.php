@@ -25,5 +25,11 @@ class Article extends Model
                 ->limit(5)
                 ->get();
     }
+    public static function getNameById(int $id){
+
+        return DB::table('ab_article')->select( 'ab_name AS name','ab_creator_id AS seller')
+            ->where('id','=',$id)->get();
+
+    }
 
 }
