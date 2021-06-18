@@ -15,7 +15,7 @@ class Article extends Model
     public static function getLikeName(string $name,int $lowerBound)
     {
         if($name =="")
-            return DB::table('ab_article')->select('id', 'ab_name','ab_price','ab_description')
+            return DB::table('ab_article')->select('id', 'ab_name','ab_price','ab_description','ab_creator_id')
                 ->offset($lowerBound)->limit(5)->get();
         else
             return DB::table('ab_article')

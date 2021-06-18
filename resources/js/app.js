@@ -45,6 +45,28 @@ socket2.onmessage=(msgVerbunden)=>{
             console.log(error);
         });
 }
+let socket3 = new WebSocket('ws://127.0.0.1:8100/offer');
+socket3.onmessage=(msgVerbunden)=>{
+    let userID=0;
+    let isAuth="false"
+    axios.get('/isloggedin', {})
+        .then((response) => {
+            userID=response.data.id;
+            console.log(response.data);
+            console.log(userID)
+            isAuth=response.data.auth;
+            let msg = JSON.parse(msgVerbunden.data);
+            if(userID!==msg.data[0] || isAuth==="false") {
+                console.log(msg.data[0]);
+                    let message= msg.data.substring(1);
+                    alert(message)
+            }
+            else
+                console.log("AuthID ist die ID des Verkäufers")
+        }, (error) => {
+            console.log(error);
+        });
+}
 
 
 

@@ -11,6 +11,7 @@ require __DIR__ . '/../src/Application/Application.php';
 require __DIR__ . '/../src/Application/DemoApplication.php';
 require __DIR__ . '/../src/Application/StatusApplication.php';
 require __DIR__ . '/../src/Application/SoldMessage.php';
+require __DIR__ . '/../src/Application/OfferMessage.php';
 
 
 $server = new \Bloatless\WebSocket\Server('127.0.0.1', 8100);
@@ -26,5 +27,7 @@ $server->setMaxRequestsPerMinute(2000);
 $server->registerApplication('status', \Bloatless\WebSocket\Application\StatusApplication::getInstance());
 $server->registerApplication('demo', \Bloatless\WebSocket\Application\DemoApplication::getInstance());
 $server->registerApplication('sold', \Bloatless\WebSocket\Application\SoldMessage::getInstance());
+$server->registerApplication('offer', \Bloatless\WebSocket\Application\OfferMessage::getInstance());
+
 
 $server->run();

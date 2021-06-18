@@ -61,5 +61,27 @@ class ArticleController extends Controller
         ]);
         $client->sendData($payload);
     }
+    public function sendOffer($id){
+        $artikel= Article::getNameById((int)$id);
+        $artikelName="";
+        $sellerid=0;
+        foreach ($artikel as $a) {
+            $artikelName= $a->name;
+            $sellerid=$a->seller;
+        }
+        ini_set('display_errors', 1);
+        error_reporting(E_ALL);
+
+        require __DIR__ . '/../../../bloatless/php-websocket/src/Client.php';
+        $client = new \Bloatless\WebSocket\Client;
+        $client->connect('127.0.0.1', 8100, '/offer', 'foo.lh');
+
+        $payload = json_encode([
+            'action' => 'echo',
+            'data' => $sellerid.'Der Artikel '.$artikelName.' wird nun günstiger angeboten! Greifen Sie schnell zu.',
+        ]);
+        $client->sendData($payload);
+
+    }
 
 }

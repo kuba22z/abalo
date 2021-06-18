@@ -23,3 +23,4 @@ Route::post('/shoppingcart', [App\Http\Controllers\ShoppingcartController::class
 Route::get('/shoppingcart', [App\Http\Controllers\ShoppingcartController::class, 'getShoppingcart_api'])->name('getShoppingcart');
 Route::delete('/shoppingcart/{shoppingcartid}/articles/{articleid}', [App\Http\Controllers\ShoppingcartController::class, 'deleteFromShoppingcart_api']);
 Route::post('/articles/{id}/sold', [App\Http\Controllers\ArticleController::class, 'soldMessage']);
+Route::post('/articles/{id}/offer', [App\Http\Controllers\ArticleController::class, 'sendOffer']);
