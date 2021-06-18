@@ -14,6 +14,14 @@ Vue.component('article-input', require('./components/ArticleInput').default);
 const axios = require('axios');
 const vueaxios = require('vue-axios');
 
+let socket = new WebSocket('ws://127.0.0.1:8100/demo');
+socket.onmessage=(msgVerbunden)=>{
+    let msg = JSON.parse(msgVerbunden.data);
+    console.log(msg.data);
+    alert(msg.data)
+}
+
+
 Vue.use(vueaxios, axios);
 
 const app = new Vue({

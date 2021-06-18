@@ -2255,6 +2255,14 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var vueaxios = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.es5.js");
 
+var socket = new WebSocket('ws://127.0.0.1:8100/demo');
+
+socket.onmessage = function (msgVerbunden) {
+  var msg = JSON.parse(msgVerbunden.data);
+  console.log(msg.data);
+  alert(msg.data);
+};
+
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vueaxios, axios);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0__.default({
   el: '#app'
