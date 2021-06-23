@@ -2002,6 +2002,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "site-body",
   data: function data() {
@@ -2009,14 +2012,33 @@ __webpack_require__.r(__webpack_exports__);
       articles: {},
       shoppingCart: [],
       articleInput: [],
-      lowerBound: 0
+      lowerBound: 0,
+      userId: 0
     };
   },
   mounted: function mounted() {
+    this.getAuthId();
     this.getArticles();
     this.getCart();
   },
   methods: {
+    sendToOtherClients: function sendToOtherClients(articleId) {
+      axios.post('/api/articles/' + articleId + '/offer', {}).then(function (response) {
+        console.log(response.data);
+      }, function (error) {
+        console.log(error);
+      });
+    },
+    getAuthId: function getAuthId() {
+      var _this = this;
+
+      axios.get('/isloggedin', {}).then(function (response) {
+        _this.userId = parseInt(response.data.id);
+        console.log(response.data);
+      }, function (error) {
+        console.log(error);
+      });
+    },
     onSubmit: function onSubmit(e) {
       e.preventDefault();
       this.getArticles();
@@ -2032,12 +2054,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     getArticles: function getArticles() {
-      var _this = this;
+      var _this2 = this;
 
       console.log(this.articleInput);
       axios.get('/api/articles?search=' + this.articleInput + '&lowerBound=' + this.lowerBound, {}).then(function (response) {
         console.log(response.data);
-        _this.articles = response.data;
+        _this2.articles = response.data;
       }, function (error) {
         console.log(error);
       });
@@ -2067,10 +2089,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getCart: function getCart() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('/api/shoppingcart', {}).then(function (response) {
-        _this2.shoppingCart = response.data;
+        _this3.shoppingCart = response.data;
       }, function (error) {
         console.log(error);
       });
@@ -2254,6 +2276,60 @@ vue__WEBPACK_IMPORTED_MODULE_0__.default.component('article-input', __webpack_re
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var vueaxios = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.es5.js");
+
+var socket = new WebSocket('ws://127.0.0.1:8100/demo');
+
+socket.onmessage = function (msgVerbunden) {
+  var msg = JSON.parse(msgVerbunden.data);
+  console.log(msg.data);
+  alert(msg.data);
+};
+
+var socket2 = new WebSocket('ws://127.0.0.1:8100/sold');
+
+socket2.onmessage = function (msgVerbunden) {
+  var isAuth = "false";
+  var userID = 0;
+  axios.get('/isloggedin', {}).then(function (response) {
+    isAuth = response.data.auth;
+    userID = response.data.id;
+    console.log(response.data);
+
+    if (isAuth === "true") {
+      var msg = JSON.parse(msgVerbunden.data);
+      console.log(msg.data[0]);
+
+      if (userID === msg.data[0]) {
+        var message = msg.data.substring(1);
+        alert(message);
+      } else console.log("AuthID ist nicht die ID des Verkäufers");
+    }
+  }, function (error) {
+    console.log(error);
+  });
+};
+
+var socket3 = new WebSocket('ws://127.0.0.1:8100/offer');
+
+socket3.onmessage = function (msgVerbunden) {
+  var userID = 0;
+  var isAuth = "false";
+  axios.get('/isloggedin', {}).then(function (response) {
+    userID = response.data.id;
+    console.log(response.data);
+    console.log(userID);
+    isAuth = response.data.auth;
+    var msg = JSON.parse(msgVerbunden.data);
+
+    if (userID !== msg.data[0] || isAuth === "false") {
+      console.log(msg.data[0]);
+      var message = msg.data.substring(1);
+      alert(message);
+    } else console.log("AuthID ist die ID des Verkäufers");
+  }, function (error) {
+    console.log(error);
+  });
+};
 
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vueaxios, axios);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0__.default({
@@ -38877,7 +38953,23 @@ var render = function() {
                   },
                   [_vm._v("+")]
                 )
-              ])
+              ]),
+              _vm._v(" "),
+              article.ab_creator_id === _vm.userId
+                ? _c("td", [
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.sendToOtherClients(article.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Artikel jetzt als Angebot anbieten")]
+                    )
+                  ])
+                : _vm._e()
             ])
           }),
           0

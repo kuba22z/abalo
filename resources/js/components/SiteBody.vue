@@ -49,6 +49,9 @@
                 <td>
                     <button @click="addToShoppingCart(article)">+</button>
                 </td>
+                <td v-if="article.ab_creator_id===userId">
+                    <button @click="sendToOtherClients(article.id)">Artikel jetzt als Angebot anbieten</button>
+                </td>
             </tr>
             </tbody>
             <tfoot>
@@ -75,33 +78,54 @@ export default {
             shoppingCart: [],
             articleInput: [],
             lowerBound: 0,
+            userId: 0
         }
     }
     ,
     mounted() {
+        this.getAuthId();
         this.getArticles();
         this.getCart()
     },
     methods: {
+        sendToOtherClients: function (articleId) {
+            axios.post('/api/articles/'+articleId+'/offer', {})
+                .then((response) => {
+                    console.log(response.data);
+                }, (error) => {
+                    console.log(error);
+                });
+        },
+
+        getAuthId: function () {
+            axios.get('/isloggedin', {})
+                .then((response) => {
+                    this.userId = parseInt(response.data.id)
+                    console.log(response.data)
+                }, (error) => {
+                    console.log(error);
+                });
+
+        },
         onSubmit: function (e) {
             e.preventDefault()
             this.getArticles();
         },
-        nextArticleSite: function() {
-            if(this.articles.length!==0)
-            this.lowerBound+=5;
-                this.getArticles();
-            },
-        previousArticleSite: function() {
-            if(this.lowerBound>4) {
-                this.lowerBound-=5;
+        nextArticleSite: function () {
+            if (this.articles.length !== 0)
+                this.lowerBound += 5;
+            this.getArticles();
+        },
+        previousArticleSite: function () {
+            if (this.lowerBound > 4) {
+                this.lowerBound -= 5;
                 this.getArticles()
             }
         },
         getArticles: function () {
             console.log(this.articleInput)
 
-            axios.get('/api/articles?search=' + this.articleInput+'&lowerBound='+this.lowerBound, {})
+            axios.get('/api/articles?search=' + this.articleInput + '&lowerBound=' + this.lowerBound, {})
                 .then((response) => {
                     console.log(response.data);
                     this.articles = response.data;
@@ -166,7 +190,7 @@ export default {
     watch: {
         articleInput: function () {
             if (this.articleInput.length > 2) {
-             this.lowerBound=0;
+                this.lowerBound = 0;
                 this.getArticles()
             }
         }

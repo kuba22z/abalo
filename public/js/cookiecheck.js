@@ -19,9 +19,9 @@ function getCookieValue(VaraibleName) {
     //value of VaraibleName
     pos+=VaraibleName.length;
     let i = pos
-        //get the last index of value
-        while (i<decodedCookie.length && decodedCookie[i] !== ";")
-            i++;
+    //get the last index of value
+    while (i<decodedCookie.length && decodedCookie[i] !== ";")
+        i++;
 
-        return decodedCookie.slice(pos, i);
+    return decodedCookie.slice(pos, i);
 }
