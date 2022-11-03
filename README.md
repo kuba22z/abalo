@@ -11,6 +11,6 @@ Implemtens a prototype for an online marketplace Abalo.
 
 Developed By:
 
-Jakub Naumowicz 3234751
+Jakub
 
-Inka Luise Pfeil 3241778
+Inka
