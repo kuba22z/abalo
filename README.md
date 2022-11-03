@@ -1,5 +1,5 @@
 # Abalo - Online marketplace (SS 2021)
-Within the module databases and web technologies a prototype for an online marketplace Abalo was implemented.
+Implemtens a prototype for an online marketplace Abalo.
 
 ## Install Vue with Laravel
 
